@@ -195,11 +195,6 @@ class Tapper:
                         else:
                             logger.error(f"{self.session_name} | Storage Upgrade Failed")
 
-                    timeSleep = settings.SLEEP_TIME
-
-                    logger.info(f" {self.session_name} | Sleep {timeSleep}s")
-                    await asyncio.sleep(delay=timeSleep)
-
                 except InvalidSession as error:
                     raise error
 
@@ -208,13 +203,11 @@ class Tapper:
                     await asyncio.sleep(delay=3)
 
                 else:
-                    sleep_between_clicks = randint(a=settings.SLEEP_BETWEEN_TAP[0], b=settings.SLEEP_BETWEEN_TAP[1])
+                    timeSleep = settings.SLEEP_TIME
+                    
 
-                    if active_turbo is True:
-                        sleep_between_clicks = 4
-
-                    logger.info(f"Sleep {sleep_between_clicks}s")
-                    await asyncio.sleep(delay=sleep_between_clicks)
+                    logger.info(f"Sleep {timeSleep}s")
+                    await asyncio.sleep(delay=timeSleep)
 
 
 async def run_tapper(tg_client: Client, proxy: str | None):
