@@ -170,7 +170,7 @@ class Tapper:
                         logger.info(f"{self.session_name} | No Reward Available")
 
                     #upgrade ability
-                    if balance > farm['priceToLevelUp'] and settings.AUTO_UPGRADE_CHARGE and farm['level'] < settings.MAX_FARM_LEVEL:
+                    if balance > farm['priceToLevelUp'] and settings.AUTO_UPGRADE_FARM and farm['level'] < settings.MAX_FARM_LEVEL:
                         upgrade = await self.upgrade_ability(http_client=http_client, ability='farm')
                         if(upgrade['newBalance']):
                             new_balance = balance - farm['priceToLevelUp']
