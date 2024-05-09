@@ -165,7 +165,7 @@ class Tapper:
                     if(collect['newBalance']):
                         new_balance = collect['newBalance']/1000000000000000000
                         balance = round(new_balance, 6)
-                        logger.info(f"{self.session_name} | Reward Claimed! | New Balance: {balance}")
+                        logger.success(f"{self.session_name} | Reward Claimed! | New Balance: {balance}")
                     else:
                         logger.info(f"{self.session_name} | No Reward Available")
 
@@ -175,25 +175,25 @@ class Tapper:
                         if(upgrade['newBalance']):
                             new_balance = balance - farm['priceToLevelUp']
                             balance = round(new_balance, 6)
-                            logger.info(f"{self.session_name} | Farm Upgraded! | New Balance: {balance}")
+                            logger.success(f"{self.session_name} | Farm Upgraded! | New Balance: {balance}")
                         else:
-                            logger.info(f"{self.session_name} | Farm Upgrade Failed")
+                            logger.error(f"{self.session_name} | Farm Upgrade Failed")
                     elif balance > population['priceToLevelUp'] and settings.AUTO_UPGRADE_POPULATION and population['level'] < settings.MAX_POPULATION_LEVEL:
                         upgrade = await self.upgrade_ability(http_client=http_client, ability='population')
                         if(upgrade['newBalance']):
                             new_balance = balance - population['priceToLevelUp']
                             balance = round(new_balance, 6)
-                            logger.info(f"{self.session_name} | Population Upgraded! | New Balance: {balance}")
+                            logger.success(f"{self.session_name} | Population Upgraded! | New Balance: {balance}")
                         else:
-                            logger.info(f"{self.session_name} | Population Upgrade Failed")
+                            logger.error(f"{self.session_name} | Population Upgrade Failed")
                     elif balance > storage['priceToLevelUp'] and settings.AUTO_UPGRADE_STORAGE and storage['level'] < settings.MAX_STORAGE_LEVEL:
                         upgrade = await self.upgrade_ability(http_client=http_client, ability='storage')
                         if(upgrade['newBalance']):
                             new_balance = balance - storage['priceToLevelUp']
                             balance = round(new_balance, 6)
-                            logger.info(f"{self.session_name} | Storage Upgraded! | New Balance: {balance}")
+                            logger.success(f"{self.session_name} | Storage Upgraded! | New Balance: {balance}")
                         else:
-                            logger.info(f"{self.session_name} | Storage Upgrade Failed")
+                            logger.error(f"{self.session_name} | Storage Upgrade Failed")
 
                     timeSleep = settings.SLEEP_TIME
 
